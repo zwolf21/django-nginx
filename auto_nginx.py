@@ -124,8 +124,13 @@ with open(UWSGI_PARAMS_PATH, 'wt') as fp:
 
 
 print('Create Soft Link {} to /etc/nginx/sites-enabled/'.format(NGINX_CONF_PATH))
+conf_name = os.path.basename(NGINX_CONF_PATH)
+link_path = os.path.join('/etc/nginx/sites-enabled/', conf_name)
+if os.path.exists(link_path):
+	os.unlink(link_path)
 call(['ln','-s', NGINX_CONF_PATH, '/etc/nginx/sites-enabled/'])
 
 print('Done!')
 call(['service', 'nginx', 'restart'])
-print('cd to dir where inifile located and input: uwsgi --ini *.ini')
+call(['uwsgi','--ini', UWSGI_INI_PATH])
+
