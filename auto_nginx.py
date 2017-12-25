@@ -128,7 +128,7 @@ conf_name = os.path.basename(NGINX_CONF_PATH)
 link_path = os.path.join('/etc/nginx/sites-enabled/', conf_name)
 if os.path.exists(link_path):
 	os.unlink(link_path)
-call(['ln','-s', NGINX_CONF_PATH, '/etc/nginx/sites-enabled/'])
+call(['sudo', 'ln','-s', NGINX_CONF_PATH, '/etc/nginx/sites-enabled/'])
 
 print('Done!')
 call(['sudo', 'service', 'nginx', 'restart'])
