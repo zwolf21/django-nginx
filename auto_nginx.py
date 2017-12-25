@@ -36,7 +36,7 @@ except:
 
 # install esstional app
 
-call(['apt-get','-y', '-f', 'install','nginx-full'])
+call(['sudo', 'apt-get','-y', '-f', 'install','nginx-full'])
 call(['pip3', 'install', 'uwsgi'])
 
 
@@ -131,6 +131,6 @@ if os.path.exists(link_path):
 call(['ln','-s', NGINX_CONF_PATH, '/etc/nginx/sites-enabled/'])
 
 print('Done!')
-call(['service', 'nginx', 'restart'])
+call(['sudo', 'service', 'nginx', 'restart'])
 call(['uwsgi','--ini', UWSGI_INI_PATH])
 
